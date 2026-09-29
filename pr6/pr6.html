@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+        <html>
+
+        <head>
+
+            <title>College Events</title>
+
+            <style>
+
+                body {
+                    font-family: Arial;
+                    margin: 30px;
+                }
+
+                h1 {
+                    text-align: center;
+                }
+
+                input, select, button {
+                    padding: 8px;
+                    margin: 5px;
+                }
+
+                .event {
+                    border: 1px solid black;
+                    padding: 10px;
+                    margin: 10px;
+                }
+
+            </style>
+
+        </head>
+
+        <body>
+
+            <h1>College Events</h1>
+
+            <!-- Search -->
+            <input type="text" id="search" placeholder="Search event">
+
+            <!-- Filter -->
+            <select id="category">
+
+                <option value="All">All</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Seminar">Seminar</option>
+                <option value="Competition">Competition</option>
+
+            </select>
+
+            <!-- Sort -->
+            <button onclick="sortEvents()">
+                Sort by Name
+            </button>
+
+            <!-- <hr> -->
+
+            <div id="output">Loading...</div>
+
+            <br>
+
+            <!-- Pagination -->
+            <button onclick="previousPage()">
+                Previous
+            </button>
+
+            <button onclick="nextPage()">
+                Next
+            </button>
+
+
+            <script>
+
+                let events = [];
+                let page = 1;
+                let perPage = 5;
+
+                // Fetch JSON data
+                fetch("events.json")
+                    .then(response => response.json())
+                    .then(data => {
+                        events = data;
+                        displayEvents();
+
+                    })
+
+                    .catch(error => {
+                        document.getElementById("output").innerHTML =
+                            "Error loading data";
+                    });
+
+
+                // Display events
+                function displayEvents() {
+
+                    let searchText = document.getElementById("search") .value.toLowerCase();
+                    let category =document.getElementById("category").value;
+                    // Search
+                    let result = events.filter(function(event) {
+                        return event.name .toLowerCase() .includes(searchText);
+
+                    });
+
+
+                    // Filter
+                    if (category != "All") {
+                        result = result.filter(function(event) {
+                            return event.category == category;
+                        });
+
+                    }
+
+
+                    // Pagination
+                    let start = (page - 1) * perPage;
+                    let end = start + perPage;
+                    let pageData = result.slice(start, end);
+
+
+                    // Display
+                    let output = "";
+
+
+                    pageData.forEach(function(event) {
+                        output +="<div class='event'>" + "<h3>" + event.name + "</h3>" +
+                            "<p>Category: " + event.category + "</p>" +
+                            "<p>Date: " + event.date + "</p>" +
+                            "</div>";
+
+                    });
+
+
+                    document.getElementById("output")
+                        .innerHTML = output;
+
+                }
+
+
+                // Search
+                document.getElementById("search")
+                    .addEventListener("input", function() {
+                        page = 1;
+                        displayEvents();
+                    });
+
+
+                // Filter
+                document.getElementById("category").addEventListener("change", function() {
+                        page = 1;
+                        displayEvents();
+                    });
+
+
+                // Sort
+                function sortEvents() {
+                    events.sort(function(a, b) {
+                        return a.name.localeCompare(b.name);
+
+                    });
+
+                    displayEvents();
+                }
+
+
+                // Next page
+                function nextPage() {
+                    page++;
+                    displayEvents();
+                }
+
+
+                // Previous page
+                function previousPage() {
+                    if (page > 1) {
+                        page--;
+                        displayEvents();
+                    }
+                }
+
+            </script>
+
+        </body>
+
+        </html>

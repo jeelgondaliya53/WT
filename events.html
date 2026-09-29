@@ -1,12 +1,306 @@
-<header>
-<h1>Events</h1>
-</header>
-<body style="background-color: lightblue;"
-<background image="blue"></background>
-</body>
-<h2>Upcoming Event</h2>
-<p>
-The events page displays information about technical workshops, seminars,
-cultural festivals, sports activities, and competitions. Students can stay
-updated about upcoming college events and participate actively.
-</p>
+<!DOCTYPE html>
+        <html>
+
+        <head>
+
+            <title>College Events</title>
+
+           <style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 30px;
+        background: #f4f7fb;
+        color: #222;
+    }
+
+    h1 {
+        text-align: center;
+        color: #1e3a8a;
+        margin-bottom: 25px;
+        font-size: 36px;
+    }
+
+    /* Search, Filter and Sort */
+
+    #search {
+        width: 300px;
+        padding: 12px;
+        margin: 5px;
+        border: 1px solid #bbb;
+        border-radius: 8px;
+        font-size: 15px;
+    }
+
+    #category {
+        padding: 12px;
+        margin: 5px;
+        border: 1px solid #bbb;
+        border-radius: 8px;
+        font-size: 15px;
+        background: white;
+    }
+
+    button {
+        padding: 12px 18px;
+        margin: 5px;
+        border: none;
+        border-radius: 8px;
+        background: #2563eb;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #1d4ed8;
+    }
+
+    /* Event container */
+
+    #output {
+        margin-top: 25px;
+    }
+
+    /* Event Card */
+
+    .event {
+        background: white;
+        border: none;
+        border-left: 5px solid #2563eb;
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+        transition: 0.3s;
+    }
+
+    .event:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
+    }
+
+    .event h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        color: #1e3a8a;
+        font-size: 22px;
+    }
+
+    .event p {
+        margin: 8px 0;
+        font-size: 16px;
+    }
+
+    /* Category styling */
+
+    .event p:first-of-type {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #e0ecff;
+        color: #1d4ed8;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    /* Pagination */
+
+    #output + br + button {
+        background: #374151;
+    }
+
+    #output + br + button:hover {
+        background: #111827;
+    }
+
+    /* Responsive Design */
+
+    @media (max-width: 600px) {
+
+        body {
+            padding: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        #search {
+            width: 100%;
+        }
+
+        #category {
+            width: 100%;
+        }
+
+        button {
+            width: auto;
+        }
+
+        .event {
+            padding: 15px;
+        }
+
+    }
+
+</style>
+
+        </head>
+
+        <body>
+
+            <h1>College Events</h1>
+
+            <!-- Search -->
+            <input type="text" id="search" placeholder="Search event">
+
+            <!-- Filter -->
+            <select id="category">
+
+                <option value="All">All</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Seminar">Seminar</option>
+                <option value="Competition">Competition</option>
+
+            </select>
+
+            <!-- Sort -->
+            <button onclick="sortEvents()">
+                Sort by Name
+            </button>
+
+            <!-- <hr> -->
+
+            <div id="output">Loading...</div>
+
+            <br>
+
+            <!-- Pagination -->
+            <button onclick="previousPage()">
+                Previous
+            </button>
+
+            <button onclick="nextPage()">
+                Next
+            </button>
+
+
+            <script>
+
+                let events = [];
+                let page = 1;
+                let perPage = 5;
+
+                // Fetch JSON data
+                fetch("events.json")
+                    .then(response => response.json())
+                    .then(data => {
+                        events = data;
+                        displayEvents();
+
+                    })
+
+                    .catch(error => {
+                        document.getElementById("output").innerHTML =
+                            "Error loading data";
+                    });
+
+
+                // Display events
+                function displayEvents() {
+
+                    let searchText = document.getElementById("search") .value.toLowerCase();
+                    let category =document.getElementById("category").value;
+                    // Search
+                    let result = events.filter(function(event) {
+                        return event.name .toLowerCase() .includes(searchText);
+
+                    });
+
+
+                    // Filter
+                    if (category != "All") {
+                        result = result.filter(function(event) {
+                            return event.category == category;
+                        });
+
+                    }
+
+
+                    // Pagination
+                    let start = (page - 1) * perPage;
+                    let end = start + perPage;
+                    let pageData = result.slice(start, end);
+
+
+                    // Display
+                    let output = "";
+
+
+                    pageData.forEach(function(event) {
+                        output +="<div class='event'>" + "<h3>" + event.name + "</h3>" +
+                            "<p>Category: " + event.category + "</p>" +
+                            "<p>Date: " + event.date + "</p>" +
+                            "</div>";
+
+                    });
+
+
+                    document.getElementById("output")
+                        .innerHTML = output;
+
+                }
+
+
+                // Search
+                document.getElementById("search")
+                    .addEventListener("input", function() {
+                        page = 1;
+                        displayEvents();
+                    });
+
+
+                // Filter
+                document.getElementById("category").addEventListener("change", function() {
+                        page = 1;
+                        displayEvents();
+                    });
+
+
+                // Sort
+                function sortEvents() {
+                    events.sort(function(a, b) {
+                        return a.name.localeCompare(b.name);
+
+                    });
+
+                    displayEvents();
+                }
+
+
+                // Next page
+                function nextPage() {
+                    page++;
+                    displayEvents();
+                }
+
+
+                // Previous page
+                function previousPage() {
+                    if (page > 1) {
+                        page--;
+                        displayEvents();
+                    }
+                }
+
+            </script>
+
+        </body>
+
+        </html>

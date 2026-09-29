@@ -1,0 +1,77 @@
+[
+    {
+        "name": "AI Workshop",
+        "category": "Workshop",
+        "date": "20-08-2026"
+    },
+    {
+        "name": "Hackathon",
+        "category": "Competition",
+        "date": "22-08-2026"
+    },
+    {
+        "name": "Flutter Workshop",
+        "category": "Workshop",
+        "date": "25-08-2026"
+    },
+    {
+        "name": "Coding Contest",
+        "category": "Competition",
+        "date": "28-08-2026"
+    },
+    {
+        "name": "Web Seminar",
+        "category": "Seminar",
+        "date": "01-09-2026"
+    },
+    {
+        "name": "Python Workshop",
+        "category": "Workshop",
+        "date": "03-09-2026"
+    },
+    {
+        "name": "Tech Talk",
+        "category": "Seminar",
+        "date": "05-09-2026"
+    },
+    {
+        "name": "Java Contest",
+        "category": "Competition",
+        "date": "08-09-2026"
+    },
+    {
+        "name": "Cyber Security Workshop",
+        "category": "Workshop",
+        "date": "10-09-2026"
+    },
+    {
+        "name": "AI Seminar",
+        "category": "Seminar",
+        "date": "12-09-2026"
+    },
+    {
+        "name": "Code Hackathon",
+        "category": "Competition",
+        "date": "15-09-2026"
+    },
+    {
+        "name": "Cloud Workshop",
+        "category": "Workshop",
+        "date": "18-09-2026"
+    },
+    {
+        "name": "Data Science Seminar",
+        "category": "Seminar",
+        "date": "20-09-2026"
+    },
+    {
+        "name": "Web Design Contest",
+        "category": "Competition",
+        "date": "22-09-2026"
+    },
+    {
+        "name": "JavaScript Workshop",
+        "category": "Workshop",
+        "date": "25-09-2026"
+    }
+]

@@ -1,14 +1,157 @@
-<header>
-<h1>Frequently Asked Questions</h1>
-</header>
-<body style="background-color: lightblue;"
-<background image="blue"></background>
-</body>
-<h2>Ex:What is StudentHub?</h2>
-<p>
-The Frequently Asked Questions (FAQ) page provides answers to common questions
-about registration, login, student services, events, and other StudentHub
-features, helping users quickly find the information they need.
-</p>
-<p>StudentHub is for store a inforamation of students that with a security portal</p>
+<!DOCTYPE html>
+<html>
 
+<head>
+    <title>Frequently Asked Questions</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            transition: 0.3s;
+        }
+
+        .dark {
+            background: black;
+            color:white;
+        }
+
+        .banner {
+            background: plum;
+            padding: 10px;
+            text-align: center;
+            text-decoration: double;
+
+        }
+
+        .nav{
+            background-color: bisque;
+            color: black;
+            padding: 10px;
+        }
+        .menu{
+            display: none;
+
+        }
+        .menu a{
+            display: block;
+            color:white;
+            padding: 5px;
+            text-decoration: none;
+            background:pink;
+            padding: 5px;
+        }
+
+        .answer{
+            display: none;
+            padding: 10px;
+            background: lightcoral;
+        }
+
+        .model{
+            display: none;
+            position: 10px;
+            top:20%;
+            left:35%;
+            background:white;
+            border:1px solid black;
+            padding: 10px;
+
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Frequently Asked Questions</h1>
+    </header>
+
+    <div class="banner">
+        Welcome to JavaScript UI Demo
+    </div>
+
+    <nav>
+        <br>
+        <button onclick="menu()">= Menu</button>
+        <button onclick="theme()">Theme</button>
+
+        <div class="menu" id="menu">
+            <a href="#">Home</a><br>
+            <a href="#">About</a><br>
+            <a href="#">Contact</a><br>
+        </div>
+    </nav>
+
+    <hr>
+
+    <h2>Student Clubs</h2>
+
+    <button onclick="j()">How many student clubs are there?</button>
+
+    <div class="answer" id="ans">
+        There are total 3 clubs:
+        <br>
+        1. AI for All
+        <br>
+        2. Math for All
+        <br>
+        3. Innovators
+    </div>
+
+    <hr>
+
+    <h2>Modal Popup</h2>
+
+    <button onclick="openmodel()">Open Popup</button>
+
+    <div class="model" id="model">
+        <h3>Hello</h3>
+        <p>This is popup model</p>
+
+        <button onclick="closemodel()">Close</button>
+    </div>
+
+    <script>
+
+        function theme() 
+        {
+            document.body.classList.toggle("dark");
+        }
+
+        function menu() {
+            var m = document.getElementById("menu");
+
+            if (m.style.display=="block") 
+            {
+                m.style.display="none";
+            } else {
+                m.style.display="block";
+            }
+        }
+
+        function j() {
+            var a = document.getElementById("ans");
+
+            if (a.style.display=="block") {
+                a.style.display="none";
+            } else {
+                a.style.display="block";
+            }
+        }
+
+        function openmodel() {
+            document.getElementById("model").style.display="block";
+        }
+
+        function closemodel() {
+            document.getElementById("model").style.display="none";
+        }
+
+    </script>
+
+</body>
+
+</html>

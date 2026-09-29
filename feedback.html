@@ -1,17 +1,38 @@
-<header>
-<h1>Feedback</h1>
-</header>
-<body style="background-color: lightblue;"
-<background image="blue"></background>
-</body><p>
-The feedback page allows students to share their opinions, suggestions, and
-experience while using StudentHub. Valuable feedback helps improve the quality
-of services and the overall user experience.
-</p>
-<form>
+<html>
+<head>
+<title>Feedback</title>
+</head>
+<body>
 
-<label>Your Feedback:</label><br>
-<textarea></textarea><br><br>
+<header>
+<h1>Student Feedback</h1>
+</header>
+
+<section>
+<h2>Give Your Feedback</h2>
+
+<form>
+<label for="name">Student Name:</label><br>
+<input type="text" id="name"><br>
+
+<label for="course">Course:</label><br>
+<input type="text" id="course"><br>
+
+<label for="rating">Rating:</label><br>
+<select id="rating">
+<option>Excellent</option>
+<option>Good</option>
+<option>Average</option>
+<option>Needs Improvement</option>
+</select><br><br>
+
+<label for="feedback">Feedback:</label><br>
+<textarea id="feedback" rows="4" cols="40"></textarea><br><br>
 
 <input type="submit" value="Submit">
+<input type="reset" value="Reset">
 </form>
+</section>
+
+</body>
+</html>

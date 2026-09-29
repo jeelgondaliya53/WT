@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Student Information</title>
+</head>
+
+<body>
+    <h2>Student Name and Marks</h2>
+
+    <div id="output"></div>
+
+    <script>
+        fetch("student.json")
+            .then(response => response.json())
+            .then(data => {
+
+                data.forEach(student => {
+
+                    document.getElementById("output").innerHTML +=
+                        student.name + " - " + student.marks + "<br>";
+
+                });
+
+            });
+    </script>
+</body>
+</html>

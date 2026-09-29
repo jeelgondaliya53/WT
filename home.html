@@ -1,18 +1,73 @@
-<body style="background-color: white;"
-<background image="blue"></background>
-</body>
+<html>
+<head>
+    <title>StudentHub</title>
 
+    <style>
+        body {
+            background-color: white;
+            text-align: center;
+        }
+
+        .main-image {
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 900px;
+            margin: auto;
+        }
+
+        .gallery img {
+            width: 435px;
+            height: 220px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
 
 <main>
-    <section>
-        <h2>Welcome to Charusat StudentHub</h2>
-        <img src="C:\Users\admin\Downloads\c1.png" alt="StudentHub" width="400">
-        <p>
-       Welcome to StudentHub, a platform designed to help students access academicresources, campus updates, and important announcements. Explore variousfeatures such as events, registration, profiles, and feedback.
-        </p>
-    </section>
-</main>
 
+    <section>
+
+        <h2>Welcome to Charusat StudentHub</h2>
+
+        <!-- YOUR ORIGINAL C1 IMAGE -->
+        <div class="main-image">
+            <img src="c1.png" alt="StudentHub" width="200">
+        </div>
+
+        <p>
+            Welcome to StudentHub, a platform designed to help students access
+            academic resources, campus updates, and important announcements.
+            Explore various features such as events, registration, profiles,
+            and feedback.
+        </p>
+
+        <!-- 4 STUDENTHUB IMAGES -->
+        <div class="gallery">
+
+            <img src="students.jpg"
+                 alt="CHARUSAT Students">
+
+            <img src="technical.jpg"
+                 alt="CHARUSAT Technical Event">
+
+            <img src="sports.jpg"
+                 alt="CHARUSAT Sports Event">
+
+            <img src="cultural.jpg"
+                 alt="CHARUSAT Cultural Event">
+
+        </div>
+
+    </section>
+
+</main>
 
 </body>
 </html>
