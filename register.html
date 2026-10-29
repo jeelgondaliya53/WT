@@ -1,89 +1,141 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Registration</title>
     <link rel="stylesheet" href="reg.css">
-<section id="register.html">
+</head>
+
+<body style="background-color: white;">
+
+    <section id="register">
+        <h2>Register Here!</h2>
+
+        <form id="registerForm" onsubmit="return validateForm();">
+
+            <label for="name">Full Name:</label><br>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your full name"
+            ><br>
+
+            <label for="userid">User ID:</label><br>
+            <input
+                type="text"
+                id="userid"
+                name="userid"
+                placeholder="Enter your student user ID"
+            ><br>
+
+            <label for="email">Email:</label><br>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+            ><br>
+
+            <label for="password">Password:</label><br>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+            ><br>
+
+            <label>Gender:</label><br>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <input type="radio" name="gender" value="Other"> Other
+            <br><br>
+
+            <label for="department">Department:</label><br>
+            <select id="department" name="department">
+                <option value="AI and ML">
+                    Artificial Intelligence and Machine Learning
+                </option>
+                <option value="Computer Engineering">
+                    Computer Engineering
+                </option>
+                <option value="Computer Science">
+                    Computer Science & Engineering
+                </option>
+                <option value="Information Technology">
+                    Information Technology
+                </option>
+                <option value="Civil Engineering">
+                    Civil Engineering
+                </option>
+            </select>
+            <br><br>
+
+            <label for="address">Address:</label><br>
+            <textarea
+                id="address"
+                name="address"
+                rows="4"
+                cols="50"
+                placeholder="Enter your address"
+            ></textarea>
+            <br><br>
+
+            <input type="submit" value="Register">
+            <input type="reset" value="Reset">
+
+        </form>
+    </section>
+
     <script>
-        function validateform(){
-            let name=document.getElementById("name").value;
-            let userid=document.getElementById("userid").value;
-            let email=document.getElementById("email").value;
-            let password=document.getElementById("password").value;
+        function validateForm() {
+            const name = document.getElementById("name").value.trim();
+            const userid = document.getElementById("userid").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const gender = document.querySelector(
+                'input[name="gender"]:checked'
+            );
 
-            if(name==""){
-                alert("please enter your name");
+            if (name === "") {
+                alert("Please enter your name.");
                 return false;
             }
 
-             if(userid==""){
-                alert("please enter your user id");
+            if (userid === "") {
+                alert("Please enter your user ID.");
                 return false;
             }
 
-             if(email==""){
-                alert("please enter your email");
+            if (email === "") {
+                alert("Please enter your email.");
                 return false;
             }
 
-             if(password=""){
-                alert("please enter your password");
+            if (password.trim() === "") {
+                alert("Please enter your password.");
                 return false;
             }
 
-            if(password.length<=8)
-            {
-                alert("password must be greater than 8character");
+            if (password.length <= 8) {
+                alert("Password must be greater than 8 characters.");
                 return false;
             }
-            alert("Registration succesful")
+
+            if (!gender) {
+                alert("Please select your gender.");
+                return false;
+            }
+
+            alert("Form validation successful!");
+
+            // Frontend validation only.
+            // No account is created or saved to a database.
             return false;
         }
-
-
     </script>
-    <h2>register here!</h2>
 
-    <form onsubmit=" return validateform()"></form>
-    
-    <body style="background-color: white;"
-    <background image="blue"></background>
-    
-    <form onsubmit="return validateform();">
-        <label>full Name: </label><br>
-        <input type="text" placeholder="Enter your full name:" id="name" > <br>
-
-        <label>User Id</label><br>
-        <input type="text" placeholder="Enter your student user id:" id="userid"><br>
-
-        <label>Email:</label><br>
-        <input type="email" placeholder="Enter your email:" id="email"><br>
-
-        <label>Password:</label><br>
-        <input type="password" placeholder="Enter your password" id="password"><br>
-
-        <label>Gender</label><br>
-        <input type="radio" name="gender"> Male
-        <input type="radio" name="gender"> Female
-        <input type="radio" name="gender"> other<br><br>
-
-        <label>Department</label>
-        <select>
-            <option>Artificial intelligence and machine learnging</option>
-            <option>Computer engineering</option>
-            <option>Computer science & engineering</option>
-            <option>Information technology</option>
-            <option>Civil engineering</option>
-        </select><br><br>
-
-        <label>Address</label>
-        <textarea rows="4" cols="50"></textarea><br><br>
-        
-
-        <input type="submit" value="submit">
-        <input type="submit" value="Register">
-        <input type="reset" value="Reset">
-
-    </form>
-</section>
-</head>
 </body>
 </html>
