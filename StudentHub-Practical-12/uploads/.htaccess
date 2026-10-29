@@ -1,0 +1,5 @@
+Options -Indexes
+# Disable PHP execution in the poster upload directory on Apache.
+<FilesMatch "\.(php|php[0-9]?|phtml|phar)$">
+    Require all denied
+</FilesMatch>

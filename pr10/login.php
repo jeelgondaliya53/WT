@@ -1,4 +1,10 @@
 <?php
+// Share the PHP session across the WT practical folders.
+session_set_cookie_params([
+    'path' => '/xampp/myproject/WT/',
+    'httponly' => true,
+    'samesite' => 'Lax'
+]);
 session_start();
 
 /* =========================
